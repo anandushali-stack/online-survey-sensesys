@@ -1,0 +1,574 @@
+/* Form Completion Status Styles */
+.form-completion-container {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(30, 64, 175, 0.1);
+  margin-bottom: 32px;
+}
+
+/* Horizontal Tab Layout for Forms */
+.forms-horizontal-container {
+  margin-bottom: 40px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  /* Slightly more space for scrollbar */
+  padding-right: 4px;
+  /* Ensure gap at the end */
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  /* Ensure full width */
+  display: block;
+
+  /* Custom Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #eff6ff;
+}
+
+.forms-horizontal-container::-webkit-scrollbar {
+  height: 12px;
+  /* Make scrollbar thicker */
+  width: 12px;
+  display: block;
+  /* Force display */
+}
+
+.forms-horizontal-container::-webkit-scrollbar-track {
+  background: #eff6ff;
+  border-radius: 4px;
+}
+
+.forms-horizontal-container::-webkit-scrollbar-thumb {
+  background-color: #3b82f6;
+  border-radius: 4px;
+  border: 2px solid #eff6ff;
+}
+
+.forms-horizontal-container::-webkit-scrollbar-thumb:hover {
+  background-color: #2563eb;
+}
+
+.forms-tabs {
+  display: flex;
+  gap: 20px;
+  min-width: max-content;
+  padding: 10px 0;
+}
+
+.form-tab {
+  background: #f8f9fa;
+  border: 3px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 300px;
+  max-width: 350px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  min-height: 220px;
+  flex-shrink: 0;
+  /* Prevent tabs from shrinking */
+}
+
+.form-tab:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.form-tab.completed {
+  background: #f0f9ff;
+  border-color: #10b981;
+}
+
+.form-tab.available {
+  background: #fef3c7;
+  border-color: #f59e0b;
+}
+
+.form-tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-tab-icon {
+  font-size: 2rem;
+  color: #3b82f6;
+}
+
+.form-tab-number {
+  background: #1e40af;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.form-tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.form-tab-title {
+  color: #3b82f6;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  text-overflow: clip;
+}
+
+.form-tab-description {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 12px;
+  /* Ensure full visibility */
+  overflow: visible;
+  height: auto;
+  max-height: none;
+}
+
+.form-tab-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.form-tab-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.meta-icon {
+  font-size: 1rem;
+}
+
+.form-tab-action {
+  margin-top: auto;
+}
+
+.form-tab-button {
+  width: 100%;
+  background: linear-gradient(135deg, #1e40af, #1d4ed8);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.form-tab-button:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .forms-horizontal-container {
+    margin: 0 -15px 30px -15px;
+    padding: 0 15px 10px 15px;
+  }
+
+  .forms-tabs {
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .form-tab {
+    min-width: 280px;
+    max-width: 320px;
+    height: 200px;
+    padding: 18px;
+  }
+
+  .form-tab {
+    min-width: 260px;
+    /* Slightly narrower to show more hints of next card */
+    max-width: 300px;
+    height: auto;
+    /* Allow content to dictate height */
+    min-height: 220px;
+    /* Minimum height for consistency */
+    padding: 16px;
+  }
+
+  .form-tab-title {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    white-space: normal !important;
+    text-overflow: clip !important;
+    overflow: visible !important;
+  }
+
+  .form-tab-description {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 3;
+    /* Allow one more line */
+    line-clamp: 3;
+    margin-bottom: 12px;
+  }
+
+  .form-tab-meta-item {
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .form-tab-button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+.form-completion-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-completion-header h3 {
+  color: #3b82f6;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.completion-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-number.completed {
+  color: #10b981;
+}
+
+.stat-number.remaining {
+  color: #f59e0b;
+}
+
+.stat-number.total {
+  color: #3b82f6;
+}
+
+.stat-label {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Forms Grid */
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.form-card {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-card.available {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+}
+
+.form-card.available:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
+}
+
+.form-card.completed {
+  border-color: #10b981;
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+  cursor: default;
+}
+
+.form-card.completed:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.form-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.form-number {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.form-card.completed .form-number {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.completed {
+  background: #10b981;
+  color: white;
+}
+
+.status-badge.available {
+  background: #3b82f6;
+  color: white;
+}
+
+.form-card-content {
+  margin-bottom: 20px;
+}
+
+.form-name {
+  color: #3b82f6;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.form-description {
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.completion-info {
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.completion-date {
+  color: #059669;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.form-card-action {
+  display: flex;
+  justify-content: center;
+}
+
+.start-form-btn {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(30, 64, 175, 0.3);
+}
+
+.start-form-btn:hover {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+}
+
+/* All Forms Completed */
+.all-forms-completed {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.completion-celebration {
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+  border: 2px solid #10b981;
+  border-radius: 16px;
+  padding: 32px;
+  color: #059669;
+}
+
+.completion-celebration svg {
+  color: #10b981;
+  margin-bottom: 16px;
+}
+
+.completion-celebration h4 {
+  color: #059669;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.completion-celebration p {
+  color: #047857;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Loading and Error States */
+.form-completion-loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e2e8f0;
+  border-top: 3px solid #1e40af;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.form-completion-error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-completion-container {
+    padding: 20px 16px;
+    /* Reduced vertical and narrower horizontal padding */
+    margin-bottom: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width */
+    border-width: 0;
+    /* Optional: remove border on mobile for cleaner look */
+    box-shadow: none;
+    /* Optional: simpler look on mobile */
+    background: transparent;
+    /* Seamless integration */
+  }
+
+  .completion-stats {
+    gap: 16px;
+  }
+
+  .stat-item {
+    padding: 8px;
+    background: white;
+    border-radius: 12px;
+    width: 100px;
+    /* Uniform width for items */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .forms-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: 16px;
+  }
+
+  .completion-celebration {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-completion-container {
+    padding: 16px 12px;
+  }
+}

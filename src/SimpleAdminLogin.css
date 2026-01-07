@@ -1,0 +1,496 @@
+/* Simple Admin Login Styles */
+
+/* Independent Transform Animations - Admin Login */
+@keyframes independentX {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(20px); }
+}
+
+@keyframes independentY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes independentRotateZ {
+  0%, 100% { transform: rotateZ(0deg); }
+  50% { transform: rotateZ(5deg); }
+}
+
+@keyframes independentScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes independentOpacity {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Combined Independent Transforms */
+@keyframes multiTransform1 {
+  0% { 
+    transform: translateX(0px) translateY(0px) rotateZ(0deg) scale(1);
+    opacity: 0.7;
+  }
+  25% { 
+    transform: translateX(10px) translateY(-5px) rotateZ(2deg) scale(1.02);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateX(20px) translateY(-10px) rotateZ(3deg) scale(1.05);
+    opacity: 1;
+  }
+  75% { 
+    transform: translateX(15px) translateY(-8px) rotateZ(2deg) scale(1.03);
+    opacity: 0.9;
+  }
+  100% { 
+    transform: translateX(0px) translateY(0px) rotateZ(0deg) scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes multiTransform2 {
+  0% { 
+    transform: translateX(0px) translateY(0px) rotateZ(0deg) scale(1);
+    opacity: 0.5;
+  }
+  30% { 
+    transform: translateX(-8px) translateY(-12px) rotateZ(-1deg) scale(1.08);
+    opacity: 0.8;
+  }
+  60% { 
+    transform: translateX(-15px) translateY(-20px) rotateZ(-2deg) scale(1.1);
+    opacity: 1;
+  }
+  80% { 
+    transform: translateX(-10px) translateY(-15px) rotateZ(-1deg) scale(1.05);
+    opacity: 0.9;
+  }
+  100% { 
+    transform: translateX(0px) translateY(0px) rotateZ(0deg) scale(1);
+    opacity: 0.5;
+  }
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Gentle Pulse Animation */
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.01);
+  }
+}
+
+/* Floating Particles Animations */
+@keyframes floatingParticles1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes floatingParticles2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-15px) translateX(-15px);
+  }
+}
+
+@keyframes floatingParticles3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-25px) translateX(5px);
+  }
+}
+.admin-login-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #cbd5e1 75%, #94a3b8 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 25s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(147, 197, 253, 0.1) 0%, transparent 65%);
+  animation: gentlePulse 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.admin-login-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(147, 197, 253, 0.06) 0%, transparent 35%),
+    radial-gradient(circle at 30% 70%, rgba(30, 64, 175, 0.04) 0%, transparent 25%),
+    radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.05) 0%, transparent 30%);
+  animation: 
+    multiTransform1 15s ease-in-out infinite,
+    multiTransform2 20s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Medical Assessment Icons for Simple Admin Login */
+.sal-medical-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.16;
+}
+
+.sal-medical-icons::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 8%;
+  width: 69px;
+  height: 89px;
+  background: 
+    linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.6) 23%, transparent 43%),
+    linear-gradient(0deg, transparent 0%, rgba(59, 130, 246, 0.6) 23%, transparent 43%);
+  border-radius: 4px;
+  animation: floatMedical 18s ease-in-out infinite;
+}
+
+.sal-medical-icons::after {
+  content: '';
+  position: absolute;
+  top: 21%;
+  right: 11%;
+  width: 41px;
+  height: 41px;
+  background: 
+    radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, transparent 59%);
+  border-radius: 50%;
+  animation: floatMedical 22s ease-in-out infinite reverse;
+}
+
+.admin-login-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  overflow: hidden;
+  animation: pageEnter 1s ease-out, springBounce 1.2s ease-out 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-login-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 35px 70px -12px rgba(0, 0, 0, 0.35);
+}
+
+.admin-login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.admin-login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.admin-login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.admin-login-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 6px 0;
+}
+
+.admin-login-subtitle {
+  color: #475569;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-label {
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.875rem;
+}
+
+.admin-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-input-prefix {
+  position: absolute;
+  left: 14px;
+  color: #9ca3af;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 14px 14px 14px 44px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #1e293b;
+  transition: all 0.2s ease;
+  background: #f9fafb;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.admin-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-login-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.admin-error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.admin-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: 2px solid #3b82f6;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+}
+
+.admin-login-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px 0 rgba(59, 130, 246, 0.4);
+}
+
+.admin-login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.admin-loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.admin-login-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.admin-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: transparent;
+  color: #64748b;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-back-btn:hover {
+  background: #f9fafb;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Medical Assessment Animation */
+@keyframes floatMedical {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.05;
+  }
+  25% {
+    transform: translateY(-6px) rotate(1.2deg);
+    opacity: 0.08;
+  }
+  50% {
+    transform: translateY(-13px) rotate(-0.8deg);
+    opacity: 0.03;
+  }
+  75% {
+    transform: translateY(-10px) rotate(0.6deg);
+    opacity: 0.06;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .admin-login-container {
+    padding: 16px;
+  }
+  
+  .admin-login-card {
+    padding: 24px;
+    max-width: 100%;
+  }
+  
+  .admin-login-title {
+    font-size: 1.5rem;
+  }
+  
+  .admin-login-header {
+    margin-bottom: 20px;
+  }
+  
+  .admin-login-form {
+    gap: 16px;
+  }
+}
