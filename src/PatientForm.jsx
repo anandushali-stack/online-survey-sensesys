@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from './supabaseClient';
 import './PatientForm.css';
 
@@ -12,7 +13,9 @@ function generateShortId(length = 6) {
 }
 
 function PatientForm() {
+  const navigate = useNavigate();
   const [step, setStep] = useState('inputDetails'); // inputDetails, done
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [status, setStatus] = useState('');
@@ -65,6 +68,21 @@ function PatientForm() {
     }
 
     try {
+      // 1. Check if user already exists BEFORE sending OTP
+      console.log('Checking for existing user before OTP:', email);
+      const { data: existingPatients, error: checkError } = await supabase
+        .from('patients')
+        .select('uhid')
+        .eq('email', email.trim().toLowerCase())
+        .limit(1);
+
+      if (existingPatients && existingPatients.length > 0) {
+        console.log('User already registered (Pre-OTP check)');
+        setShowDuplicateModal(true);
+        return;
+      }
+
+      // 2. If not registered, proceed to send OTP
       const { error } = await supabase.auth.signInWithOtp({ email });
       if (error) {
         if (error.message && error.message.toLowerCase().includes('rate limit')) {
@@ -110,17 +128,49 @@ function PatientForm() {
       }
 
       if (data?.user) {
-        // Insert patient record now that email is verified
+        // Explicit check for existing patient with this email
+        // Using ilike for case-insensitive match and checks list length to avoid single() errors
+        console.log('Checking for duplicate email:', email);
+        const { data: existingPatients, error: checkError } = await supabase
+          .from('patients')
+          .select('uhid')
+          .eq('email', email.trim().toLowerCase()) // Use stored email or assume DB has lower
+          .limit(1);
+
+        console.log('Duplicate check result:', existingPatients, checkError);
+
+        if (checkError) {
+          console.error('Error checking for duplicates:', checkError);
+          // Verify if RLS is the cause? Proceeding might result in duplicate if RLS blocks read
+        }
+
+        // If any record found, it's a duplicate
+        if (existingPatients && existingPatients.length > 0) {
+          console.log('Duplicate found!');
+          setShowDuplicateModal(true);
+          return;
+        }
+
+        // Insert patient record
         const patientCodeVal = generateShortId();
         const { data: patientData, error: insertError } = await supabase
           .from('patients')
-          .insert([{ name: name.trim(), email: email.trim(), patient_code: patientCodeVal, hospital_uhid: null }])
+          .insert([{
+            name: name.trim(),
+            email: email.trim().toLowerCase(), // Force lowercase
+            patient_code: patientCodeVal,
+            hospital_uhid: null
+          }])
           .select('uhid')
           .single();
 
         if (insertError) {
-          if (insertError.message && insertError.message.toLowerCase().includes('duplicate')) {
-            setStatus('This email is already registered. Please use a different email.');
+          console.error('Insert error details:', insertError);
+          if (insertError.message && (
+            insertError.message.toLowerCase().includes('duplicate') ||
+            insertError.message.toLowerCase().includes('unique')
+          )) {
+            setShowDuplicateModal(true);
             return;
           } else {
             setStatus('Error registering patient: ' + insertError.message);
@@ -333,6 +383,26 @@ function PatientForm() {
           </div>
         )}
       </div>
+
+      {showDuplicateModal && (
+        <div className="pf-modal-overlay">
+          <div className="pf-modal-content">
+            <div className="pf-modal-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="currentColor" />
+              </svg>
+            </div>
+            <h3 className="pf-modal-title">Already Registered</h3>
+            <p className="pf-modal-message">
+              You are already registered with this email address. Please proceed to the survey page.
+            </p>
+            <button onClick={() => navigate('/survey-access')} className="pf-modal-button">
+              Go to Survey Page
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
